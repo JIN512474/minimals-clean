@@ -7,15 +7,11 @@ const LangContext = createContext(null);
 export function LanguageProvider({ children }) {
   const [lang, setLang] = useState("ko");
 
-  // 최초 진입 시 저장값 복원
   useEffect(() => {
     const fromStorage = typeof window !== "undefined" ? localStorage.getItem("lang") : null;
-    if (fromStorage === "ko" || fromStorage === "en") {
-      setLang(fromStorage);
-    }
+    if (fromStorage === "ko" || fromStorage === "en") setLang(fromStorage);
   }, []);
 
-  // 변경 시 저장 + <html lang="">
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("lang", lang);
@@ -23,8 +19,7 @@ export function LanguageProvider({ children }) {
     }
   }, [lang]);
 
-  // 번역 훅(필요하면 사전 연결)
-  const t = (key) => key;
+  const t = (k) => k; // 필요 시 사전 연결
 
   const value = useMemo(() => ({ lang, setLang, t }), [lang]);
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>;

@@ -1,9 +1,10 @@
 import "./globals.css";
 import { LanguageProvider } from "../components/LanguageProvider";
+import HeaderClient from "../components/HeaderClient";
 
 export const metadata = {
   title: "MINIMALS — Small Frame, Big Style",
-  description: "160~170cm 전용핏, 수선 없이 입는 완벽 비율.",
+  description: "160~170cm 전용핏. 수선 없는 완벽 비율.",
 };
 
 export default function RootLayout({ children }) {
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <body className="min-h-screen bg-white text-neutral-900">
         <LanguageProvider>
+          <HeaderClient />
           {children}
         </LanguageProvider>
       </body>

@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 선택: 가로 스크롤 UI 깔끔 */
+/* 선택: 가로 스크롤 숨김 */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

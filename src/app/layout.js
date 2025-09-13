@@ -7,7 +7,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // 서버 컴포넌트여도 내부에서 클라이언트 Provider 렌더링 가능
   return (
     <html lang="ko">
       <body className="min-h-screen bg-white text-neutral-900">

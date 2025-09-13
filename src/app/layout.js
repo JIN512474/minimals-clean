@@ -1,5 +1,6 @@
 import "./globals.css";
 import { LanguageProvider } from "../components/LanguageProvider";
+import { CartProvider } from "../components/CartContext";
 import HeaderClient from "../components/HeaderClient";
 
 export const metadata = {
@@ -12,8 +13,10 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <body className="min-h-screen bg-white text-neutral-900">
         <LanguageProvider>
-          <HeaderClient />
-          {children}
+          <CartProvider>
+            <HeaderClient />
+            {children}
+          </CartProvider>
         </LanguageProvider>
       </body>
     </html>

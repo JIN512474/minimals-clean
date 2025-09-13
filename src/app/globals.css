@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 선택: 가로 스크롤 숨김 */
+/* 가로 스크롤 UI 깔끔 */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* 드래그 금지(이미지) */
+img { -webkit-user-drag: none; user-drag: none; }

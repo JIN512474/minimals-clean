@@ -2,9 +2,11 @@
 
 import LangToggle from "./LangToggle";
 import { useI18n } from "./LanguageProvider";
+import { useCart } from "./CartContext";
 
 export default function HeaderClient() {
   const { t } = useI18n();
+  const { totalCount } = useCart();
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-neutral-200">
@@ -17,11 +19,13 @@ export default function HeaderClient() {
           <a href="/#size" className="hidden sm:inline-block px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
             {t("nav_size")}
           </a>
-          <a href="/cart" className="px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
+          <a href="/cart" className="relative px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
             {t("nav_cart")}
-          </a>
-          <a href="https://smartstore.naver.com/내상점" className="px-3 py-1.5 rounded-lg bg-black text-white hover:opacity-90">
-            {t("nav_buy")}
+            {totalCount > 0 && (
+              <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-black text-white text-[11px] px-1">
+                {totalCount}
+              </span>
+            )}
           </a>
           <LangToggle />
         </nav>

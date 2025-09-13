@@ -30,21 +30,33 @@ export default function CartPage() {
               {items.map((p) => {
                 const num = Number(String(p.price).replace(/[^\d]/g, "")) || 0;
                 return (
-                  <div key={p.key} className="flex gap-4 rounded-2xl border border-neutral-200 p-3">
+                  <div key={p.slug} className="flex gap-4 rounded-2xl border border-neutral-200 p-3">
                     <div className="relative w-[92px] h-[115px] rounded-xl overflow-hidden bg-neutral-100">
                       <Image src={p.img} alt={p.name} fill className="object-cover" />
                     </div>
                     <div className="flex-1">
                       <div className="font-semibold">{p.name}</div>
                       <div className="text-sm text-neutral-600">{p.price}</div>
-                      <div className="text-xs text-neutral-500">
-                        {p.color ? `Color: ${p.color} ` : ""}{p.size ? ` / Size: ${p.size}` : ""}
-                      </div>
                       <div className="mt-2 flex items-center gap-2">
-                        <button className="w-7 h-7 rounded border" onClick={() => updateQty(p.key, p.qty - 1)}>-</button>
+                        <button
+                          className="w-7 h-7 rounded border"
+                          onClick={() => updateQty(p.slug, p.qty - 1)}
+                          aria-label="decrease"
+                        >
+                          -
+                        </button>
                         <div className="px-2">{p.qty}</div>
-                        <button className="w-7 h-7 rounded border" onClick={() => updateQty(p.key, p.qty + 1)}>+</button>
-                        <button className="ml-3 text-sm underline underline-offset-4" onClick={() => removeItem(p.key)}>
+                        <button
+                          className="w-7 h-7 rounded border"
+                          onClick={() => updateQty(p.slug, p.qty + 1)}
+                          aria-label="increase"
+                        >
+                          +
+                        </button>
+                        <button
+                          className="ml-3 text-sm underline underline-offset-4"
+                          onClick={() => removeItem(p.slug)}
+                        >
                           {t("cart_remove")}
                         </button>
                       </div>
@@ -67,10 +79,17 @@ export default function CartPage() {
                 <span>{t("cart_total")}</span>
                 <span>₩{formatKRW(totalPrice)}</span>
               </div>
-              <button className="mt-4 w-full rounded-xl bg-black text-white py-3 font-semibold disabled:opacity-50" disabled>
+              <button
+                className="mt-4 w-full rounded-xl bg-black text-white py-3 font-semibold disabled:opacity-50"
+                disabled
+                title="결제 연동 전 (아웃링크 제외)"
+              >
                 {t("cart_checkout")}
               </button>
-              <button className="mt-2 w-full rounded-xl border border-neutral-300 py-3 font-semibold hover:bg-neutral-50" onClick={clearCart}>
+              <button
+                className="mt-2 w-full rounded-xl border border-neutral-300 py-3 font-semibold hover:bg-neutral-50"
+                onClick={clearCart}
+              >
                 {t("cart_clear")}
               </button>
             </aside>
